@@ -1,6 +1,6 @@
 export default function LoadingRow() {
     return (
-      <div className="px-6 md:px-12 lg:px-24 space-y-4">
+        <div className="px-6 md:px-12 lg:px-24 space-y-4">
         <div className="h-6 w-48 bg-gray-800 rounded animate-pulse" />
         <div className="flex gap-2">
           {[...Array(6)].map((_, i) => (
