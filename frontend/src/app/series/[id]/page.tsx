@@ -1,5 +1,3 @@
-"use client";
-
 import { seriesApi } from '@/services/api';
 import { Serie } from '@/types/serie';
 import Image from 'next/image';

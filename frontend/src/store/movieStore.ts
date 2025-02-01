@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 interface Movie {
   id: number;
   title: string;
@@ -49,7 +50,7 @@ export const useMovieStore = create<MovieState>((set) => ({
       set({ error: error.message, loading: false });
     }
   },
-
+  
   fetchTopRatedMovies: async (page = 1) => {
     set({ loading: true, error: null });
 

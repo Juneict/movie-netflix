@@ -1,4 +1,3 @@
-"use client";
 import { moviesApi } from '@/services/api';
 import { Movie } from '@/types/movie';
 import Image from 'next/image';
