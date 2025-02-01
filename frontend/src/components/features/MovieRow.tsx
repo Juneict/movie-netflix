@@ -5,7 +5,6 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import MovieCard from '../ui/MovieCard';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface MovieRowProps {
   title: string;
@@ -16,7 +15,6 @@ export default function MovieRow({ title, movies }: MovieRowProps) {
   return (
     <div className="relative px-4 md:px-8 lg:px-16 xl:px-24 space-y-4">
       <h2 className="text-xl font-semibold px-2">{title}</h2>
-      
       <Swiper
         modules={[Navigation]}
         spaceBetween={16}
