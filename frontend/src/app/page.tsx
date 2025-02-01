@@ -1,19 +1,18 @@
 "use client";
 
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useMovieStore } from '@/store/movieStore';
 import Hero from '@/components/features/Hero';
-import LoadingRow from '@/components/ui/LoadingRow';
 import MovieRow from '@/components/features/MovieRow';
 import SkeletonRow from '@/components/ui/SkeletonRow';
 import SkeletonHero from '@/components/ui/SkeletonHero';
+import SerieRow from '@/components/features/SerieRow';
+import { useTranslation } from 'react-i18next';
 
 export default function HomePage() {
   const {
     popularMovies,
-    topRatedMovies,
     popularSeries,
-    featuredMovie,
     loading: moviesLoading,
     error: moviesError,
     fetchPopularMovies,
@@ -21,8 +20,9 @@ export default function HomePage() {
     fetchPopularSeries,
     fetchFeaturedMovie,
   } = useMovieStore();
+  
+  const { t } = useTranslation('translation');
 
-  // Fetch data on component mount
   useEffect(() => {
     fetchPopularMovies();
     fetchTopRatedMovies();
@@ -33,13 +33,9 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Hero Section */}
-      {moviesLoading ? (
-        <SkeletonHero></SkeletonHero>
-      ) : moviesError ? (
-        <div className="text-red-500">{moviesError}</div>
-      ) : (
+      <Suspense fallback={<SkeletonHero />}>
         <Hero />
-      )}
+      </Suspense>
 
       {/* Movie Rows */}
       <div className="space-y-8 -mt-2 relative z-10">
@@ -49,7 +45,7 @@ export default function HomePage() {
         ) : moviesError ? (
           <div className="text-red-500">{moviesError}</div>
         ) : (
-          <MovieRow title="Popular Movies" movies={popularMovies} />
+          <MovieRow title={t('popularMovies')} movies={popularMovies} />
         )}
 
         {/* Popular Series */}
@@ -58,7 +54,7 @@ export default function HomePage() {
         ) : moviesError ? (
           <div className="text-red-500">{moviesError}</div>
         ) : (
-          <MovieRow title="Popular Series" movies={popularSeries} />
+          <SerieRow title={t('popularSeries')} series={popularSeries} />
         )}
       </div>
     </main>

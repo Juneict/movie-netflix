@@ -2,10 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Search, Bell, ChevronDown, Menu, X } from 'lucide-react';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t } = useTranslation('translation');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,11 +40,11 @@ export default function Navbar() {
 
           {/* Desktop Nav Links */}
           <div className="hidden lg:flex gap-5">
-            <Link href="/" className="hover:text-gray-200 transition">Home</Link>
-            <Link href="/" className="hover:text-gray-200 transition">TV Shows</Link>
-            <Link href="/" className="hover:text-gray-200 transition">Movies</Link>
-            <Link href="/" className="hover:text-gray-200 transition">New & Popular</Link>
-            <Link href="/" className="hover:text-gray-200 transition">My List</Link>
+            <Link href="/" className="hover:text-gray-200 transition">{t('home')} </Link>
+            <Link href="/" className="hover:text-gray-200 transition">{t('tv')}</Link>
+            <Link href="/" className="hover:text-gray-200 transition">{t('movies')}</Link>
+            <Link href="/" className="hover:text-gray-200 transition">{t('new&Popular')}</Link>
+            <Link href="/" className="hover:text-gray-200 transition">{t('myList')}</Link>
           </div>
         </div>
 
@@ -49,6 +52,7 @@ export default function Navbar() {
         <div className="flex items-center gap-5">
           <Search className="w-5 h-5 cursor-pointer" />
           <Bell className="w-5 h-5 cursor-pointer" />
+          <LanguageSwitcher></LanguageSwitcher>
           <div className="relative group cursor-pointer">
             <img src="/Netflix-avatar.png" alt="Profile" className="w-7 h-7 rounded" />
             <ChevronDown className="w-4 h-4" />

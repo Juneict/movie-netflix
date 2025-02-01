@@ -11,4 +11,5 @@ export interface Serie {
     seasons: number;
     cast: string[];
     director: string;
+    runtime : string;
 }

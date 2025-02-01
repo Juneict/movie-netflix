@@ -1,3 +1,5 @@
+"use client";
+
 export default function LoadingRow() {
     return (
         <div className="px-6 md:px-12 lg:px-24 space-y-4">

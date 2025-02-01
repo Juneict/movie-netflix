@@ -4,23 +4,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import MovieCard from '../ui/MovieCard';
-import { useEffect, useState } from 'react';
+import SerieCard from '../ui/SerieCard';
 
-interface MovieRowProps {
+interface SerieRowProps {
   title: string;
-  movies: any[];
+  series: any[];
 }
 
-export default function MovieRow({ title, movies }: MovieRowProps) {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) return null;
-
+export default function SerieRow({ title, series }: SerieRowProps) {
   return (
     <div className="relative px-4 md:px-8 lg:px-16 xl:px-24 space-y-4">
       <h2 className="text-xl font-semibold px-2">{title}</h2>
@@ -34,11 +25,10 @@ export default function MovieRow({ title, movies }: MovieRowProps) {
           1024: { slidesPerView: 5 },
         }}
         className="relative"
-        noSwiping={true}
       >
-        {movies.map((movie) => (
-          <SwiperSlide key={movie.id}>
-            <MovieCard movie={movie} />
+        {series.map((series) => (
+          <SwiperSlide key={series.id}>
+            <SerieCard serie={series} />
           </SwiperSlide>
         ))}
       </Swiper>
