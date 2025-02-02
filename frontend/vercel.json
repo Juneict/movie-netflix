@@ -1,0 +1,12 @@
+{
+    "builds": [
+      {
+        "src": "frontend/package.json",
+        "use": "@vercel/next"
+      }
+    ],
+    "env": {
+      "NEXT_PUBLIC_API_URL": "http://52.221.187.148:3001"
+    }
+  }
+  
