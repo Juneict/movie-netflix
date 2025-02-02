@@ -5,23 +5,13 @@ import { Play, Info } from 'lucide-react';
 import Link from 'next/link';
 import { useMovieStore } from '@/store/movieStore';
 import { useState, useEffect } from 'react';
+import { Movie } from '@/types/movie';
 
+interface HeroProps {
+  featuredMovie: Movie;
+}
 
-export default function Hero() {
-  const { featuredMovie, fetchFeaturedMovie } = useMovieStore();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchFeaturedMovie().finally(() => setLoading(false));
-  }, [fetchFeaturedMovie]);
-
-  if (loading || !featuredMovie) {
-    return <div>Loading featured movie...</div>;
-  }
-
-  if (!featuredMovie) {
-    return <div>Loading featured movie...</div>;
-  }
+export default function Hero({ featuredMovie }: HeroProps) {
 
   return (
     <div className="relative h-[85vh] w-full">

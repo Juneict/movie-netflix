@@ -1,24 +1,35 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
-import I18nProvider from './i18n-provider';
 import Navbar from '@/components/ui/Navbar';
-
-const inter = Inter({ subsets: ['latin'] });
+import { Geist, Geist_Mono } from "next/font/google";
 
 export const metadata: Metadata = {
   title: 'Nextflix',
   description: 'A Netflix clone built with Next.js',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang='en'>
-      <body className={inter.className}>
-        <I18nProvider>
-          <Navbar/>
-          {children}
-        </I18nProvider>
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <Navbar />
+        {children}
       </body>
     </html>
   );
